@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>Board</display-name>
+  
+    <servlet>
+  	<servlet-name>memberServlet</servlet-name>
+  	<servlet-class>servlet.MemberServlet</servlet-class>
+  </servlet>
+  <!-- 서블릿이 처리할 url(요청 주소) -->
+  <servlet-mapping>
+  <servlet-name>memberServlet</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  	<url-pattern>/main</url-pattern>
+  	<url-pattern>/logout</url-pattern> 
+	<url-pattern>/memberList</url-pattern>  	
+	<url-pattern>/modify</url-pattern>  	
+	<url-pattern>/modifyForm</url-pattern>
+	<url-pattern>/joinForm</url-pattern>
+	<url-pattern>/loginForm</url-pattern>
+	<url-pattern>/join</url-pattern>
+	
+  </servlet-mapping>
+  
+      <servlet>
+  	<servlet-name>boardServlet</servlet-name>
+  	<servlet-class>servlet.BoardServlet</servlet-class>
+  </servlet>
+  <!-- 서블릿이 처리할 url(요청 주소) -->
+  <servlet-mapping>
+  <servlet-name>boardServlet</servlet-name>
+  	<url-pattern>/messageList</url-pattern>
+  	<url-pattern>/write</url-pattern>
+	<url-pattern>/search</url-pattern>
+	<url-pattern>/confirmDelete</url-pattern>
+	<url-pattern>/searchList</url-pattern>
+  </servlet-mapping>
+  
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 하이이이이이이 -->
+	
+	  	<filter>
+  		<filter-name>LoginCheckFilter</filter-name>
+  		<filter-class>filter.LoginCheckFilter</filter-class>
+  	</filter>
+  
+  	<filter-mapping>
+  		<filter-name>LoginCheckFilter</filter-name>
+  		<url-pattern>/main</url-pattern>
+		<url-pattern>/logout</url-pattern> 
+		<url-pattern>/memberList</url-pattern>  	
+		<url-pattern>/modify</url-pattern>  	
+		<url-pattern>/modifyForm</url-pattern>  		
+  	</filter-mapping>
+  
+    <filter>
+   	<filter-name>nullParameter</filter-name>
+   	<filter-class>filter.NullParameterFilter</filter-class> <!-- 필터의 클래스의 위치 -->
+   	<init-param>
+   		<param-name>parameterName</param-name>
+   		<param-value>id, name</param-value>
+   	</init-param>
+   </filter>
+   
+   <!-- 필터가 처리할 요청을 명시 -->
+   <filter-mapping>
+   	<filter-name>nullParameter</filter-name>
+   	<url-pattern>*.jsp</url-pattern>
+   </filter-mapping>
+	
+</web-app>
